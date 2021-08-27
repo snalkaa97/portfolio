@@ -10,53 +10,19 @@ const vuexLocal = new VuexPersistence({
 Vue.use(Vuex);
 export default new Vuex.Store({
 	state: {
-		tasks: [
-			{
-				id: 1,
-				nama: "Belajar Javascript",
-				isDone: false,
-			},
-			{
-				id: 2,
-				nama: "Belajar PHP",
-				isDone: false,
-			},
-			{
-				id: 3,
-				nama: "Belajar HTML",
-				isDone: false,
-			},
-			{
-				id: 4,
-				nama: "Belajar CSS",
-				isDone: false,
-			},
-		],
+		profile: {
+			name: "Syaifudin Alkatiri",
+			image: "../assets/profile_pic.png",
+			bio:
+				"Currently working at Ministry Of State-Owned Enterprises (Kementerian Badan Usaha Milik Negara) as Web Programmer. Started my career since 2020 after graduated as Bachelor Degree at Universitas Muhammadiyah Jakarta. Before joining SOE, I also have been same career as Web Developer.",
+		},
 	},
 	mutations: {
-		change(state, payload) {
-			let index = state.tasks.indexOf(payload);
-			state.tasks[index].isDone = !state.tasks[index].isDone;
-		},
-		addTask(state, payload) {
-			state.tasks.push(payload);
-		},
-		deleteTask(state, payload) {
-			let index = state.tasks.indexOf(payload);
-			state.tasks.splice(index, 1);
+		changeProfile(state, payload, event) {
+			let index = state.profile.indexOf(payload);
+			state.profile[index].name = event;
 		},
 	},
-	getters: {
-		doneTasks(state) {
-			return state.tasks.filter((item) => {
-				return item.isDone == true;
-			});
-		},
-		pendingTasks(state) {
-			return state.tasks.filter((item) => {
-				return item.isDone == false;
-			});
-		},
-	},
+	getters: {},
 	plugins: [vuexLocal.plugin],
 });
